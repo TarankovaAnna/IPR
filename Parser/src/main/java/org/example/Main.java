@@ -4,7 +4,6 @@ package org.example;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        LogsParser.main(args);
-
+        LogsParser.parseLogs("C:\\projects\\parser\\Parser\\src\\data\\logs_nginx.xlsx", "C:\\projects\\parser\\Parser\\src\\data\\logs_parse.xlsx");
     }
 }
