@@ -30,6 +30,7 @@ public class LogsParser {
                         // Извлечение нужных данных
                         String date = values[3].replace("[", ""); // Извлечение даты
                         String time = values[4]; //Извлечение времени
+                        String status = values[9];
                         String request = values[7].replace("\"", ""); // Извлечение запроса
                         String hours = time.substring(0, 2); // Извлечение часа из времени
                         // Обработка запросов по шаблону
@@ -42,7 +43,7 @@ public class LogsParser {
                         }
 
                         // Формирование ключа для карты данных.
-                        String key = date + " " + hours + " " + request;
+                        String key = date + " " + hours + " " + status + " " +  request;
                         //Суммирование количества запросов по дням и часам
                         countMap.put(key, countMap.getOrDefault(key, 0) + 1);
                     }
@@ -59,7 +60,8 @@ public class LogsParser {
                 String[] values = entry.getKey().split(" ");
                 String date = values[0];
                 String hours = values[1];
-                String request = values[2];
+                String status = values[2];
+                String request = values[3];
                 SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy"); // Формат даты
                 Date parsedDate = format.parse(date); // Преобразование строки в дату
                 SimpleDateFormat newFormat = new SimpleDateFormat("EEEE"); // Формат для получения дня недели
@@ -71,8 +73,9 @@ public class LogsParser {
                 headerRow.createCell(0).setCellValue("Дата");
                 headerRow.createCell(1).setCellValue("Час");
                 headerRow.createCell(2).setCellValue("Запрос");
-                headerRow.createCell(3).setCellValue("Количество");
-                headerRow.createCell(4).setCellValue("День");
+                headerRow.createCell(3).setCellValue("Статус");
+                headerRow.createCell(4).setCellValue("Количество");
+                headerRow.createCell(5).setCellValue("День");
 
                 //Создание новой строки для записи данных.
                 Row newRow = newSheet.createRow(rowNum);
@@ -83,9 +86,11 @@ public class LogsParser {
                 Cell newCell3 = newRow.createCell(2);
                 newCell3.setCellValue(request);
                 Cell newCell4 = newRow.createCell(3);
-                newCell4.setCellValue(count);
+                newCell4.setCellValue(status);
                 Cell newCell5 = newRow.createCell(4);
-                newCell5.setCellValue(dayOfWeek);
+                newCell5.setCellValue(count);
+                Cell newCell6 = newRow.createCell(5);
+                newCell6.setCellValue(dayOfWeek);
 
 
                 rowNum++;
