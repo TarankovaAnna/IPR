@@ -44,7 +44,7 @@ public class JSONController {
                 // возвращаем успешный ответ
                 return ResponseEntity.ok()
                         .header("content-type", "application/json")
-                        .body("{\"message\": \" success\",\n\"snils\": " + "\"" + snils + "\"}");
+                        .body("{\"message\": \"success\",\n\"snils\": " + "\"" + snils + "\"}");
             } else {
                 //
                 // возвращаем ответ с ошибкой валидации СНИЛС
@@ -61,7 +61,7 @@ public class JSONController {
                     .header("content-type", "application/json")
                     .body("{\n" +
                             "\"message\": \"Error: uncorrected json\",\n" +
-                            "\"request\": {\n" +
+                            "\"request\": \n" +
                             requestBody +
                             "}");
         } catch (IOException e) {
