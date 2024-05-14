@@ -7,13 +7,14 @@ import org.lanit.modelsJson.RequestJson;
 import org.lanit.validate.CheckSnils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-@RestController // Аннотация, указывающая, что этот класс является контроллером Spring MVC
+@Controller // Аннотация, указывающая, что этот класс является контроллером Spring MVC
 public class JSONController {
 
     // создаем поле для хранения экземпляра CheckSnils
