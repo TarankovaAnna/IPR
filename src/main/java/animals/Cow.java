@@ -26,6 +26,7 @@ public class Cow extends Herbivore implements Run, Swim, Voice{
         if (food instanceof Grass) {
             System.out.println("Рабочий кормит корову травой");
             System.out.println("Корова ест траву");
+            satiety++;
         } else {
             System.out.println("Рабочий кормит корову мясом");
             System.out.println("Корова не ест мясо!");

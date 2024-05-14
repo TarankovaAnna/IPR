@@ -1,9 +1,10 @@
 package food;
 
-public class Grass implements Food {
+public class Grass extends Food {
 
     @Override
     public int getEnergy() {
+
         return 2;
     }
 }

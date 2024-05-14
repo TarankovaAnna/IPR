@@ -13,6 +13,7 @@ public class Worker {
     }
 
     public void getVoice(Voice animal){
+
         System.out.println(animal.getVoice());
     }
 

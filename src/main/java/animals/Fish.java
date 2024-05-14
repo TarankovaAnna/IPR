@@ -23,6 +23,7 @@ public class Fish extends Carnivorous implements Swim{
         if (food instanceof Meat) {
             System.out.println("Рабочий кормит рыбу мясом");
             System.out.println("Рыба ест мясо");
+            satiety++;
         } else {
             System.out.println("Рабочий кормит рыбу травой");
             System.out.println("Рыба не ест траву!");

@@ -26,6 +26,7 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
     }
 
     public Kotik() {
+
         count++;
     }
 
@@ -175,6 +176,7 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
         if (food instanceof Meat) {
             System.out.println("Рабочий кормит котика мясом");
             System.out.println("Котик ест мясо");
+            satiety++;
         } else {
             System.out.println("Рабочий кормит котика травой");
             System.out.println("Котик не ест траву!");

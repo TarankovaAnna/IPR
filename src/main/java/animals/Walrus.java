@@ -34,6 +34,7 @@ public class Walrus extends Herbivore implements Run, Swim, Voice{
         if (food instanceof Grass) {
             System.out.println("Рабочий кормит моржа травой");
             System.out.println("Морж ест траву");
+            satiety++;
         } else {
             System.out.println("Рабочий кормит моржа мясом");
             System.out.println("Морж не ест мясо!");

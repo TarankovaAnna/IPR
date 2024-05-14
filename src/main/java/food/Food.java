@@ -1,5 +1,5 @@
 package food;
 
-public interface Food {
-    int getEnergy();
+public abstract class Food {
+    abstract int getEnergy();
 }

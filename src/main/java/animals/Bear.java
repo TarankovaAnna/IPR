@@ -35,6 +35,7 @@ public class Bear extends Carnivorous implements Run, Swim, Voice{
         if (food instanceof Meat) {
             System.out.println("Рабочий кормит медведя мясом");
             System.out.println("Медведь ест мясо");
+            satiety++;
         } else {
             System.out.println("Рабочий кормит медведя травой");
             System.out.println("Медведь не ест траву!");

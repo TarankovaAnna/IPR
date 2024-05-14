@@ -10,6 +10,7 @@ public abstract class Animal {
 
 
     public int getSatiety() {
+
         return satiety;
     }
 

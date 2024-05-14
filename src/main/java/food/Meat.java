@@ -1,6 +1,6 @@
 package food;
 
-public class Meat implements Food{
+public class Meat extends Food{
     @Override
     public int getEnergy() {
         return 5;

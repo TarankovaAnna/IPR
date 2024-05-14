@@ -35,6 +35,7 @@ public class Duck extends Herbivore implements Run, Swim, Fly, Voice {
         if (food instanceof Grass) {
             System.out.println("Рабочий кормит утку травой");
             System.out.println("Утка ест траву");
+            satiety++;
         } else {
             System.out.println("Рабочий кормит утку мясом");
             System.out.println("Утка не ест мясо!");
