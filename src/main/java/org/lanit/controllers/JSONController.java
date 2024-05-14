@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.lanit.modelsJson.RequestJson;
 import org.lanit.validate.CheckSnils;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,8 @@ public class JSONController {
 
     // создаем метод для проверки валидности СНИЛС
     public ResponseEntity<?> checkSnils(@RequestBody String requestBody) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Content-Type", "application/json");
         try {
             // создаем экземпляр ObjectMapper для работы с JSON
             ObjectMapper mapper = new ObjectMapper();
