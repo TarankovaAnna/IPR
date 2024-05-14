@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.io.IOException;
 
@@ -26,7 +26,8 @@ public class JSONController {
         this.checkSnils = checkSnils;
     }
 
-    @PostMapping(path = "snils", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) // Аннотация, указывающая, что метод обрабатывает POST-запросы по адресу /snils
+    // аннотация, указывающая, что метод обрабатывает POST-запросы по адресу /snils
+    @PostMapping(path = "snils", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 
     // создаем метод для проверки валидности СНИЛС
     public ResponseEntity<?> checkSnils(@RequestBody String requestBody) {
