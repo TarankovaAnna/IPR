@@ -31,8 +31,7 @@ public class JSONController {
 
     // создаем метод для проверки валидности СНИЛС
     public ResponseEntity<?> checkSnils(@RequestBody String requestBody) {
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Content-Type", "application/json");
+
         try {
             // создаем экземпляр ObjectMapper для работы с JSON
             ObjectMapper mapper = new ObjectMapper();
@@ -45,24 +44,31 @@ public class JSONController {
                 // возвращаем успешный ответ
                 return ResponseEntity.ok()
                         .header("content-type", "application/json")
-                        .body("\"message\": \" success\",\n\"snils\": " + "\"" + snils + "\"");
+                        .body("{\"message\": \" success\",\n\"snils\": " + "\"" + snils + "\"}");
             } else {
                 //
                 // возвращаем ответ с ошибкой валидации СНИЛС
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .header("content-type", "application/json")
-                        .body("\"message\": \"Error: uncorrected snils\",\n\"snils\": " + "\"" + snils + "\"");
+                        .body("{\n" +
+                                "\"message\": \"Error: uncorrected snils\",\n" +
+                                requestBody +
+                                "}");
             }
         } catch (JsonParseException | JsonMappingException e) {
             // возвращаем ответ с ошибкой разбора JSON
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .header("content-type", "application/json")
-                    .body("\"message\": \"Error: uncorrected json\",\n\"request\": \n" + requestBody);
+                    .body("{\n" +
+                            "\"message\": \"Error: uncorrected json\",\n" +
+                            "\"request\": {\n" +
+                            requestBody +
+                            "}");
         } catch (IOException e) {
             // обработываем исключения ввода/вывода, возвращаем ответа с внутренней ошибкой сервера
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .header("content-type", "application/json")
-                    .body("\"message\": \"Error: internal server error\"");
+                    .body("{\"message\": \"Error: internal server error\"}");
         }
     }
 }
