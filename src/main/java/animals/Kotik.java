@@ -1,8 +1,11 @@
 package animals;
 
+import food.Food;
+import food.Meat;
+
 import java.util.Random;
 
-public class Kotik {
+public class Kotik extends Animal implements Run, Swim, Voice{
     private String name;
     private String voice;
     private int satiety;
@@ -160,7 +163,19 @@ public class Kotik {
     }
 
     public int getSatiety() {
+
         return satiety;
+    }
+
+    @Override
+    public void eat(Food food) {
+        if (food instanceof Meat) {
+            System.out.println("Рабочий кормит котика мясом");
+            System.out.println("Котик ест мясо");
+        } else {
+            System.out.println("Рабочий кормит котика травой");
+            System.out.println("Котик не ест траву!");
+        }
     }
 
 
@@ -168,9 +183,9 @@ public class Kotik {
         return name;
     }
 
-    public String getVoice() {
-        return voice;
-    }
+    //public String getVoice() {
+   //     return voice;
+  //  }
 
     public double getWeight() {
         return weight;
@@ -191,4 +206,20 @@ public class Kotik {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public void run() {
+        System.out.println("Котик бегает");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("Котик плавает");
+    }
+
+    @Override
+    public String getVoice() {
+        return "Котик говорит \"Мяу\"";
+    }
+
 }
