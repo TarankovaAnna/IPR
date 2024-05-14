@@ -51,11 +51,8 @@ public class JSONController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .header("content-type", "application/json")
                         .body("{\n" +
-                                "\"message\": \"Error: uncorrected snils\",\n" +
-                               requestBody +
-                                "}"
-                                //"{\n\"message\": \"Error: uncorrected snils\",\n\"snils\" " + snils"}"
-                                );
+                                "\"message\": \"Error: uncorrected snils\",\n\"message\": " + "\"" + snils + "\"}");
+                                
             }
         } catch (JsonParseException | JsonMappingException e) {
             // возвращаем ответ с ошибкой разбора JSON
