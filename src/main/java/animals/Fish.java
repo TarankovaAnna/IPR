@@ -4,15 +4,14 @@ import food.Food;
 import food.Grass;
 import food.Meat;
 
-public class Fish extends Carnivorous implements Swim{
+public class Fish extends Carnivorous implements Swim {
 
-
-
-
+    // получаем значение сытости
     public int getSatiety() {
-
         return super.getSatiety();
     }
+
+    // реализовываем интерфейсы, соответствующие поведению рыбы
     @Override
     public void swim() {
         System.out.println("Рыба плавает");

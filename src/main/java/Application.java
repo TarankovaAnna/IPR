@@ -9,6 +9,7 @@ public class Application {
         }
         return true;
     }
+
     public static void main(String[] args) {
         Kotik kat1 = new Kotik("Барсик", "Мау", 5, 5);
         Kotik kat2 = new Kotik();

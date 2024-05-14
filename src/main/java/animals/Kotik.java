@@ -10,9 +10,6 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
     private String voice;
    // private int satiety;
     private int weight;
-
-
-
     private static int count = 0;
     private static final int METHODS = 5;
 
@@ -26,17 +23,12 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
     }
 
     public Kotik() {
-
         count++;
     }
 
-
-
     public static int getCount() {
-
         return count;
     }
-
 
     public void eat(int amountOfSatiety) {
         satiety = satiety + amountOfSatiety;
@@ -51,7 +43,7 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
         System.out.println("ел");
     }
 
-
+    // создаем методы, которые описывают поведение котика
     public boolean play() {
         if (satiety > 0) {
             System.out.println("играл");
@@ -111,6 +103,7 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
         return true;
     }
 
+    // создаем метод, который расписывает по часам, что делал котик
     public String[] liveAnotherDay() {
         String[] day = new String[24];
         for (int i = 0; i < 24; i++) {
@@ -166,31 +159,9 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
         return day;
     }
 
-    public int getSatiety() {
-
-        return super.getSatiety();
-    }
-
-    @Override
-    public void eat(Food food) {
-        if (food instanceof Meat) {
-            System.out.println("Рабочий кормит котика мясом");
-            System.out.println("Котик ест мясо");
-            satiety++;
-        } else {
-            System.out.println("Рабочий кормит котика травой");
-            System.out.println("Котик не ест траву!");
-        }
-    }
-
-
     public String getName() {
         return name;
     }
-
-    //public String getVoice() {
-   //     return voice;
-  //  }
 
     public double getWeight() {
         return weight;
@@ -212,6 +183,12 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
         this.weight = weight;
     }
 
+    // получаем значение сытости
+    public int getSatiety() {
+        return super.getSatiety();
+    }
+
+    // реализовываем интерфейсы, соответствующие поведению котика
     @Override
     public void run() {
         System.out.println("Котик бегает");
@@ -225,6 +202,17 @@ public class Kotik extends Carnivorous implements Run, Swim, Voice{
     @Override
     public String getVoice() {
         return "Котик говорит \"Мяу\"";
+    }
+    @Override
+    public void eat(Food food) {
+        if (food instanceof Meat) {
+            System.out.println("Рабочий кормит котика мясом");
+            System.out.println("Котик ест мясо");
+            satiety++;
+        } else {
+            System.out.println("Рабочий кормит котика травой");
+            System.out.println("Котик не ест траву!");
+        }
     }
 
 }

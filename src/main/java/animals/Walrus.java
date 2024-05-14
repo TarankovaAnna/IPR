@@ -3,17 +3,14 @@ package animals;
 import food.Food;
 import food.Grass;
 
-public class Walrus extends Herbivore implements Run, Swim, Voice{
+public class Walrus extends Herbivore implements Run, Swim, Voice {
 
-
+    // получаем значение сытости
     public int getSatiety() {
-
         return super.getSatiety();
     }
 
-
-
-
+    // // реализовываем интерфейсы, соответствующие поведению моржа
     @Override
     public void run() {
         System.out.println("Морж бегает");

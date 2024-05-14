@@ -4,8 +4,14 @@ import food.Food;
 import food.Grass;
 
 
-public class Cow extends Herbivore implements Run, Swim, Voice{
-    private int satiety;
+public class Cow extends Herbivore implements Run, Swim, Voice {
+
+    // получаем значение сытости
+    public int getSatiety() {
+        return super.getSatiety();
+    }
+
+    // реализовываем интерфейсы, соответствующие поведению коровы
     @Override
     public void run() {
         System.out.println("Корова бегает");
@@ -32,11 +38,4 @@ public class Cow extends Herbivore implements Run, Swim, Voice{
             System.out.println("Корова не ест мясо!");
         }
     }
-
-    public int getSatiety() {
-
-        return super.getSatiety();
-    }
-
-
 }

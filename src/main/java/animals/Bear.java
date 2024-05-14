@@ -3,18 +3,14 @@ package animals;
 import food.Food;
 import food.Meat;
 
-public class Bear extends Carnivorous implements Run, Swim, Voice{
+public class Bear extends Carnivorous implements Run, Swim, Voice {
 
-
-
+    // получаем значение сытости
     public int getSatiety() {
-
         return super.getSatiety();
     }
 
-
-
-
+    // реализовываем интерфейсы, соответствующие поведению медведя
     @Override
     public void run() {
         System.out.println("Медведь бегает");

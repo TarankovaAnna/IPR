@@ -6,10 +6,12 @@ import food.Meat;
 
 public class Duck extends Herbivore implements Run, Swim, Fly, Voice {
 
+    // получаем значение сытости
     public int getSatiety() {
-
         return super.getSatiety();
     }
+
+    // реализовываем интерфейсы, соответствующие поведению утки
     @Override
     public void fly() {
         System.out.println("Утка летает");

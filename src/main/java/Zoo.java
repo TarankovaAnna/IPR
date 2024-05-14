@@ -4,14 +4,16 @@ import food.Grass;
 import food.Meat;
 
 
-
 public class Zoo {
+
+    // возвращаем массив животных, умеющих плавать
     public static Swim[] createPond() {
         Swim[] pondAnimals = {new Duck(), new Fish(), new Walrus()};
         return pondAnimals;
     }
 
     public static void main(String[] args) {
+        // создаем объекты классов животных, еды, работника зоопарка
         Kotik cat = new Kotik();
         Bear bear = new Bear();
         Cow cow = new Cow();
@@ -22,15 +24,18 @@ public class Zoo {
         Meat meat = new Meat();
         Grass grass = new Grass();
 
+        // вызываем метод swim у всех животных, умеющих плавать
         Swim[] pond = createPond();
 
         for (Swim animal : pond) {
             animal.swim();
         }
 
+
+        // вызываем у рабочего все методы с разными возможными комбинациями
         System.out.println(" ");
         worker.feed(duck, meat);
-        worker.feed(duck,grass);
+        worker.feed(duck, grass);
         System.out.println(" ");
         worker.feed(cat, meat);
         worker.feed(cat, grass);
