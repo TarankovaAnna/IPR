@@ -4,12 +4,16 @@ import food.Food;
 import food.Grass;
 
 public class Walrus extends Herbivore implements Run, Swim, Voice{
-    private int satiety;
+
 
     public int getSatiety() {
 
-        return satiety;
+        return super.getSatiety();
     }
+
+
+
+
     @Override
     public void run() {
         System.out.println("Морж бегает");

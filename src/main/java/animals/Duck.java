@@ -5,10 +5,10 @@ import food.Grass;
 import food.Meat;
 
 public class Duck extends Herbivore implements Run, Swim, Fly, Voice {
-    private int satiety;
+
     public int getSatiety() {
 
-        return satiety;
+        return super.getSatiety();
     }
     @Override
     public void fly() {

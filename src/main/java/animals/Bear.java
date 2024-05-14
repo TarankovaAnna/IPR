@@ -5,12 +5,16 @@ import food.Meat;
 
 public class Bear extends Carnivorous implements Run, Swim, Voice{
 
-    private int satiety;
+
 
     public int getSatiety() {
 
-        return satiety;
+        return super.getSatiety();
     }
+
+
+
+
     @Override
     public void run() {
         System.out.println("Медведь бегает");

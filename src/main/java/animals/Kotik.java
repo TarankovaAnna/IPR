@@ -5,10 +5,10 @@ import food.Meat;
 
 import java.util.Random;
 
-public class Kotik extends Animal implements Run, Swim, Voice{
+public class Kotik extends Carnivorous implements Run, Swim, Voice{
     private String name;
     private String voice;
-    private int satiety;
+   // private int satiety;
     private int weight;
 
 
@@ -29,7 +29,10 @@ public class Kotik extends Animal implements Run, Swim, Voice{
         count++;
     }
 
+
+
     public static int getCount() {
+
         return count;
     }
 
@@ -164,7 +167,7 @@ public class Kotik extends Animal implements Run, Swim, Voice{
 
     public int getSatiety() {
 
-        return satiety;
+        return super.getSatiety();
     }
 
     @Override

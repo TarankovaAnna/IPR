@@ -3,13 +3,13 @@ package animals;
 import food.Food;
 
 public abstract class Animal {
-    public void setSatiety(int satiety) {
-        this.satiety = satiety;
-    }
 
-    private int satiety;
+
+    protected int satiety;
+
+
+
     public int getSatiety() {
-
         return satiety;
     }
 

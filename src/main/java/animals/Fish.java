@@ -5,11 +5,13 @@ import food.Grass;
 import food.Meat;
 
 public class Fish extends Carnivorous implements Swim{
-    private int satiety;
+
+
+
 
     public int getSatiety() {
 
-        return satiety;
+        return super.getSatiety();
     }
     @Override
     public void swim() {

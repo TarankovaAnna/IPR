@@ -34,7 +34,7 @@ public class Cow extends Herbivore implements Run, Swim, Voice{
 
     public int getSatiety() {
 
-        return satiety;
+        return super.getSatiety();
     }
 
 
