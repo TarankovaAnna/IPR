@@ -1,7 +1,7 @@
 package org.lanit.modelsJson;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.intellij.lang.annotations.Pattern;
+
 
 public class RequestJson {
     // добавляем аннотацию, указывающую на то, что поле snils должно соответствовать свойству "snils" в JSON
