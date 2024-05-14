@@ -52,8 +52,10 @@ public class JSONController {
                         .header("content-type", "application/json")
                         .body("{\n" +
                                 "\"message\": \"Error: uncorrected snils\",\n" +
-                                requestBody +
-                                "}");
+                               requestBody +
+                                "}"
+                                //"{\n\"message\": \"Error: uncorrected snils\",\n\"snils\" " + snils"}"
+                                );
             }
         } catch (JsonParseException | JsonMappingException e) {
             // возвращаем ответ с ошибкой разбора JSON
