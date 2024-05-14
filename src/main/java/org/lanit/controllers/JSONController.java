@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.lanit.modelsJson.RequestJson;
 import org.lanit.validate.CheckSnils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class JSONController {
         this.checkSnils = checkSnils;
     }
 
-    @PostMapping("/snils") // Аннотация, указывающая, что метод обрабатывает POST-запросы по адресу /snils
+    @PostMapping(path = "snils", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) // Аннотация, указывающая, что метод обрабатывает POST-запросы по адресу /snils
 
     // создаем метод для проверки валидности СНИЛС
     public ResponseEntity<?> checkSnils(@RequestBody String requestBody) {
