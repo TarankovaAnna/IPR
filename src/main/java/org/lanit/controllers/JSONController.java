@@ -43,18 +43,26 @@ public class JSONController {
             // проверяем валидность СНИЛС с помощью метода из CheckSnils
             if (checkSnils.isValidSnils(snils)) {
                 // возвращаем успешный ответ
-                return ResponseEntity.ok("\"message\": \" success\",\n\"snils\": " + "\"" + snils + "\"");
+                return ResponseEntity.ok()
+                        .header("content-type", "application/json")
+                        .body("\"message\": \" success\",\n\"snils\": " + "\"" + snils + "\"");
             } else {
                 //
                 // возвращаем ответ с ошибкой валидации СНИЛС
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("\"message\": \"Error: uncorrected snils\",\n\"snils\": " + "\"" + snils + "\"");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .header("content-type", "application/json")
+                        .body("\"message\": \"Error: uncorrected snils\",\n\"snils\": " + "\"" + snils + "\"");
             }
         } catch (JsonParseException | JsonMappingException e) {
             // возвращаем ответ с ошибкой разбора JSON
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("\"message\": \"Error: uncorrected json\",\n\"request\": \n" + requestBody);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .header("content-type", "application/json")
+                    .body("\"message\": \"Error: uncorrected json\",\n\"request\": \n" + requestBody);
         } catch (IOException e) {
             // обработываем исключения ввода/вывода, возвращаем ответа с внутренней ошибкой сервера
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("\"message\": \"Error: internal server error\"");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .header("content-type", "application/json")
+                    .body("\"message\": \"Error: internal server error\"");
         }
     }
 }
