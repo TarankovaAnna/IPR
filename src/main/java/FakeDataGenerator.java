@@ -44,14 +44,18 @@ public class FakeDataGenerator {
 
 
                 data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(phoneNumbers, random), Email(newName), Snils(random)));
-                for (String dataItem : data) {
-                    writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
-                }
+               // writer.write(data.toString());
+//                  for (String dataItem : data) {
+//                    writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
+//                }
 
+            } for (String dataItem : data) {
+                writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public static String Name() {
@@ -90,7 +94,7 @@ public class FakeDataGenerator {
     }
 
 
-    private static final String PHONE_NUMBER_PREFIX = "7999";
+    private static final String PHONE_NUMBER_PREFIX = "8999";
     private static final int PHONE_NUMBER_LENGTH = 7;
 
     public static String Phone(Set<String> phoneNumbers, Random random) {
@@ -112,7 +116,7 @@ public class FakeDataGenerator {
         return formattedBirthdate;
     }
 
-    private static final String EMAIL_DOMAIN = "example.ru";
+    private static final String EMAIL_DOMAIN = "mail.ru";
 
     public static String Email(String resultName) {
         String email = resultName.toLowerCase()  + "@" + EMAIL_DOMAIN;
