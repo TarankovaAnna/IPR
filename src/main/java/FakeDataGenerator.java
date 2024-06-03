@@ -1,11 +1,9 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
+import static jdk.nashorn.tools.ShellFunctions.input;
 import static org.example.Transliteration.transliterate;
 
 
@@ -26,12 +24,16 @@ public class FakeDataGenerator {
         Set<String> phoneNumbers = new HashSet<>();
         // Создание экземпляра генератора случайных чисел
         Random random = new Random();
+        Scanner scanner = new Scanner(System.in);  // Создание экземпляра Scanner для ввода данных
+        System.out.print("Введите количество строк: ");  // Приглашение для ввода числа строк
+        int numLines = scanner.nextInt();  // Считывание введенного числа строк
+        scanner.nextLine();  // Очистка буфера после считывания числа
 
         // Запись заголовка в файл
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CSV_FILE_PATH), StandardCharsets.UTF_8))) {
             writer.write("ФИО;Дата рождения;Номер телефона;Электронная почта;СНИЛС\n");
 
-            for (int i = 0; i < POOL_SIZE; i++) {
+            for (int i = 0; i < numLines; i++) {
 
                 String characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
                 StringBuilder randomString = new StringBuilder();
@@ -72,7 +74,7 @@ public class FakeDataGenerator {
                 String formattedBirthdate = new SimpleDateFormat(DATE_FORMAT).format(birthdate);
 
                 // генерация рандомного номера телефона
-                String phoneNumber = phone(phoneNumbers, random);
+                String phoneNumber = Phone(phoneNumbers, random);
                 phoneNumbers.add(phoneNumber);
 
 
@@ -82,8 +84,8 @@ public class FakeDataGenerator {
                 String newLastName = lastName.toLowerCase();
                 newLastName = transliterate(newLastName);
 
-                String email = email(newName, newLastName);
-                String snils = snils(random);
+                String email = Email(newName, newLastName);
+                String snils = Snils(random);
 
                 String csvLine = String.format("%s;%s;%s;%s;%s\n", fullName, formattedBirthdate, phoneNumber, email, snils);
                 writer.write(csvLine);
@@ -97,7 +99,7 @@ public class FakeDataGenerator {
         private static final String PHONE_NUMBER_PREFIX = "8999";
         private static final int PHONE_NUMBER_LENGTH = 7;
 
-        public static String phone(Set<String> phoneNumbers, Random random) {
+        public static String Phone(Set<String> phoneNumbers, Random random) {
             String phoneNumber;
             do {
                 phoneNumber = PHONE_NUMBER_PREFIX + String.format("%0" + PHONE_NUMBER_LENGTH + "d", random.nextInt((int) Math.pow(10, PHONE_NUMBER_LENGTH)));
@@ -117,12 +119,12 @@ public class FakeDataGenerator {
 
     private static final String EMAIL_DOMAIN = "example.com";
 
-    public static String email(String resultName, String resultLastName) {
+    public static String Email(String resultName, String resultLastName) {
         String email = resultName.toLowerCase() + "." + resultLastName.toLowerCase() + "@" + EMAIL_DOMAIN;
         return email;
     }
 
-    public static String snils(Random random) {
+    public static String Snils(Random random) {
         StringBuilder snils = new StringBuilder();
         for (int i = 0; i < 9; i++) {
             snils.append(random.nextInt(10));
