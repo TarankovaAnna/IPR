@@ -1,5 +1,3 @@
-package org.example;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -37,7 +35,6 @@ public class FakeDataGenerator {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CSV_FILE_PATH), StandardCharsets.UTF_8))) {
             writer.write("ФИО;Дата рождения;Номер телефона;Электронная почта;СНИЛС\n");
 
-            // Цикл для генерации данных
             for (int i = 0; i < POOL_SIZE; i++) {
 
                 String characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
