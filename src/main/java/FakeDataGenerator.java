@@ -42,7 +42,7 @@ public class FakeDataGenerator {
 
                 // генерация рандомной даты рождения
                 Date birthdate = BDate();
-                String formattedBirthdate = new SimpleDateFormat(DATE_FORMAT).format(birthdate);
+                String formattedBirthdate = new SimpleDateFormat("dd.MM.yyyy").format(birthdate);
 
                 // генерация рандомного номера телефона
                 String phoneNumber = Phone(phoneNumbers, random);
@@ -53,17 +53,19 @@ public class FakeDataGenerator {
                 // транслиттерация имени и фамилии для email
                 String newName = firstName.toLowerCase();
                 newName = transliterate(newName);
-                String newLastName = lastName.toLowerCase();
-                newLastName = transliterate(newLastName);
+                // String newLastName = lastName.toLowerCase();
+              //  newLastName = transliterate(newLastName);
 
                 //String email = Email(newName, newLastName);
                // String snils = Snils(random);
 
-                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(phoneNumbers, random), Email(newName, newLastName), Snils(random)));
-
+                data.add(String.format("%s;%s;%s;%s;%s", fullName, formattedBirthdate, Phone(phoneNumbers, random), Email(newName), Snils(random)));
+                for (String dataItem : data) {
+                    writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
+                }
                 // Запись в CSV-файл
-                String csvLine = String.format("%s;%s;%s;%s;%s\n", fullName, formattedBirthdate, Phone(phoneNumbers, random), Email(newName, newLastName), Snils(random));
-                writer.write(csvLine);
+              //  String csvLine = String.format("%s;%s;%s;%s;%s\n", fullName, formattedBirthdate, Phone(phoneNumbers, random), Email(newName, newLastName), Snils(random));
+               // writer.write(csvLine);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -129,8 +131,8 @@ public class FakeDataGenerator {
 
     private static final String EMAIL_DOMAIN = "example.com";
 
-    public static String Email(String resultName, String resultLastName) {
-        String email = resultName.toLowerCase() + "." + resultLastName.toLowerCase() + "@" + EMAIL_DOMAIN;
+    public static String Email(String resultName) {
+        String email = resultName.toLowerCase()  + "@" + EMAIL_DOMAIN;
         return email;
     }
 
