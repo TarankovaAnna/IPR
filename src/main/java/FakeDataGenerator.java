@@ -56,10 +56,13 @@ public class FakeDataGenerator {
                 String newLastName = lastName.toLowerCase();
                 newLastName = transliterate(newLastName);
 
-                String email = Email(newName, newLastName);
-                String snils = Snils(random);
+                //String email = Email(newName, newLastName);
+               // String snils = Snils(random);
 
-                String csvLine = String.format("%s;%s;%s;%s;%s\n", fullName, formattedBirthdate, phoneNumber, email, snils);
+                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(phoneNumbers, random), Email(newName, newLastName), Snils(random)));
+
+                // Запись в CSV-файл
+                String csvLine = String.format("%s;%s;%s;%s;%s\n", fullName, formattedBirthdate, Phone(phoneNumbers, random), Email(newName, newLastName), Snils(random));
                 writer.write(csvLine);
             }
         } catch (IOException e) {
