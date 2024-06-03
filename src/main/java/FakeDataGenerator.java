@@ -41,8 +41,8 @@ public class FakeDataGenerator {
 
 
                 // генерация рандомной даты рождения
-                Date birthdate = BDate();
-                String formattedBirthdate = new SimpleDateFormat("dd.MM.yyyy").format(birthdate);
+              //  Date birthdate = BDate();
+              //  String formattedBirthdate = new SimpleDateFormat("dd.MM.yyyy").format(birthdate);
 
                 // генерация рандомного номера телефона
                 String phoneNumber = Phone(phoneNumbers, random);
