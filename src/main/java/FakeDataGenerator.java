@@ -59,7 +59,7 @@ public class FakeDataGenerator {
                 //String email = Email(newName, newLastName);
                // String snils = Snils(random);
 
-                data.add(String.format("%s;%s;%s;%s;%s", fullName, formattedBirthdate, Phone(phoneNumbers, random), Email(newName), Snils(random)));
+                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(phoneNumbers, random), Email(newName), Snils(random)));
                 for (String dataItem : data) {
                     writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
                 }
@@ -122,14 +122,15 @@ public class FakeDataGenerator {
     private static final int MIN_AGE = 18;
     private static final int MAX_AGE = 99;
 
-    public static Date BDate() {
+    public static String BDate() {
         long minTimestamp = System.currentTimeMillis() - (MAX_AGE * 365L * 24 * 60 * 60 * 1000);
         long maxTimestamp = System.currentTimeMillis() - (MIN_AGE * 365L * 24 * 60 * 60 * 1000);
         long randomTimestamp = minTimestamp + (long) (Math.random() * (maxTimestamp - minTimestamp));
-        return new Date(randomTimestamp);
+        String formattedBirthdate = new SimpleDateFormat("dd.MM.yyyy").format(randomTimestamp);
+        return formattedBirthdate;
     }
 
-    private static final String EMAIL_DOMAIN = "example.com";
+    private static final String EMAIL_DOMAIN = "example.ru";
 
     public static String Email(String resultName) {
         String email = resultName.toLowerCase()  + "@" + EMAIL_DOMAIN;
@@ -171,7 +172,7 @@ public class FakeDataGenerator {
         formattedSnils.append(snils.substring(3, 6));
         formattedSnils.append("-");
         formattedSnils.append(snils.substring(6, 9));
-        formattedSnils.append(" ");
+        formattedSnils.append("-");
         formattedSnils.append(snils.substring(9, 11));
         return formattedSnils.toString();
     }
