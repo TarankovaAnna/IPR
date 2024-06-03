@@ -68,7 +68,7 @@ public class FakeDataGenerator {
 
 
                 // генерация рандомной даты рождения
-                Date birthdate = dDate();
+                Date birthdate = BDate();
                 String formattedBirthdate = new SimpleDateFormat(DATE_FORMAT).format(birthdate);
 
                 // генерация рандомного номера телефона
@@ -108,7 +108,7 @@ public class FakeDataGenerator {
     private static final int MIN_AGE = 18;
     private static final int MAX_AGE = 99;
 
-    public static Date dDate() {
+    public static Date BDate() {
         long minTimestamp = System.currentTimeMillis() - (MAX_AGE * 365L * 24 * 60 * 60 * 1000);
         long maxTimestamp = System.currentTimeMillis() - (MIN_AGE * 365L * 24 * 60 * 60 * 1000);
         long randomTimestamp = minTimestamp + (long) (Math.random() * (maxTimestamp - minTimestamp));
@@ -162,6 +162,6 @@ public class FakeDataGenerator {
         return formattedSnils.toString();
     }
 
-            
+
 
 }
