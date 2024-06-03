@@ -15,7 +15,7 @@ import static org.example.Snils.generateRandomSnils;
 import static org.example.Transliteration.transliterate;
 
 
-public class Generator {
+public class FakeDataGenerator {
 
     // Путь к файлу CSV
     private static final String CSV_FILE_PATH = "data.csv";
