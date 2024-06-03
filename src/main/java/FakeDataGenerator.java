@@ -3,7 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static jdk.nashorn.tools.ShellFunctions.input;
+
 import static org.example.Transliteration.transliterate;
 
 
@@ -22,6 +22,7 @@ public class FakeDataGenerator {
     public static void main(String[] args) {
         // Создание множества для хранения уникальных номеров телефонов
         Set<String> phoneNumbers = new HashSet<>();
+        List<String> data = new ArrayList<>();  // Объявление списка для хранения данных
         // Создание экземпляра генератора случайных чисел
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);  // Создание экземпляра Scanner для ввода данных
@@ -35,38 +36,8 @@ public class FakeDataGenerator {
 
             for (int i = 0; i < numLines; i++) {
 
-                String characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-                StringBuilder randomString = new StringBuilder();
 
-                // формирование рандомного имени
-                int nameLength = 4 + random.nextInt(7);  // Генерация случайной длины от 4 до 10
-                for (int y = 0; y < nameLength; y++) {
-                    char randomChar = characters.charAt(random.nextInt(characters.length()));
-                    randomString.append(y == 0 ? Character.toUpperCase(randomChar) : Character.toLowerCase(randomChar));
-                }
-                String firstName = randomString.toString();
-
-                // формирование рандомной фамилии
-                StringBuilder randomStringLastName = new StringBuilder();
-
-                int lastNameLength = 6 + random.nextInt(9);  // Генерация случайной длины от 4 до 10
-                for (int y = 0; y < lastNameLength; y++) {
-                    char randomChar = characters.charAt(random.nextInt(characters.length()));
-                    randomStringLastName.append(y == 0 ? Character.toUpperCase(randomChar) : Character.toLowerCase(randomChar));
-                }
-                String lastName = randomStringLastName.toString();
-
-                // формирование рандомного отчества
-                StringBuilder randomStringPatronymicName = new StringBuilder();
-
-                int patronymicNameLength = 8 + random.nextInt(11);  // Генерация случайной длины от 4 до 10
-                for (int y = 0; y < patronymicNameLength; y++) {
-                    char randomChar = characters.charAt(random.nextInt(characters.length()));
-                    randomStringPatronymicName.append(y == 0 ? Character.toUpperCase(randomChar) : Character.toLowerCase(randomChar));
-                }
-                String patronymicName = randomStringPatronymicName.toString();
-
-                String fullName = firstName + " " + patronymicName + " " + lastName;
+                String fullName = Name();
 
 
                 // генерация рандомной даты рождения
@@ -77,7 +48,8 @@ public class FakeDataGenerator {
                 String phoneNumber = Phone(phoneNumbers, random);
                 phoneNumbers.add(phoneNumber);
 
-
+                String firstName = fullName.split(" ")[0];
+                String lastName = fullName.split(" ")[1];
                 // транслиттерация имени и фамилии для email
                 String newName = firstName.toLowerCase();
                 newName = transliterate(newName);
@@ -95,17 +67,52 @@ public class FakeDataGenerator {
         }
     }
 
+    public static String Name() {
+        Random random = new Random();
+        String characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        StringBuilder randomString = new StringBuilder();
 
-        private static final String PHONE_NUMBER_PREFIX = "8999";
-        private static final int PHONE_NUMBER_LENGTH = 7;
-
-        public static String Phone(Set<String> phoneNumbers, Random random) {
-            String phoneNumber;
-            do {
-                phoneNumber = PHONE_NUMBER_PREFIX + String.format("%0" + PHONE_NUMBER_LENGTH + "d", random.nextInt((int) Math.pow(10, PHONE_NUMBER_LENGTH)));
-            } while (phoneNumbers.contains(phoneNumber));
-            return phoneNumber;
+        // формирование рандомного имени
+        int nameLength = 4 + random.nextInt(7);  // Генерация случайной длины от 4 до 10
+        for (int y = 0; y < nameLength; y++) {
+            char randomChar = characters.charAt(random.nextInt(characters.length()));
+            randomString.append(y == 0 ? Character.toUpperCase(randomChar) : Character.toLowerCase(randomChar));
         }
+        String firstName = randomString.toString();
+
+        // формирование рандомной фамилии
+        StringBuilder randomStringLastName = new StringBuilder();
+
+        int lastNameLength = 6 + random.nextInt(9);  // Генерация случайной длины от 4 до 10
+        for (int y = 0; y < lastNameLength; y++) {
+            char randomChar = characters.charAt(random.nextInt(characters.length()));
+            randomStringLastName.append(y == 0 ? Character.toUpperCase(randomChar) : Character.toLowerCase(randomChar));
+        }
+        String lastName = randomStringLastName.toString();
+
+        // формирование рандомного отчества
+        StringBuilder randomStringPatronymicName = new StringBuilder();
+
+        int patronymicNameLength = 8 + random.nextInt(11);  // Генерация случайной длины от 4 до 10
+        for (int y = 0; y < patronymicNameLength; y++) {
+            char randomChar = characters.charAt(random.nextInt(characters.length()));
+            randomStringPatronymicName.append(y == 0 ? Character.toUpperCase(randomChar) : Character.toLowerCase(randomChar));
+        }
+        String patronymicName = randomStringPatronymicName.toString();
+        return firstName + " " + lastName + " " + patronymicName;
+    }
+
+
+    private static final String PHONE_NUMBER_PREFIX = "8999";
+    private static final int PHONE_NUMBER_LENGTH = 7;
+
+    public static String Phone(Set<String> phoneNumbers, Random random) {
+        String phoneNumber;
+        do {
+            phoneNumber = PHONE_NUMBER_PREFIX + String.format("%0" + PHONE_NUMBER_LENGTH + "d", random.nextInt((int) Math.pow(10, PHONE_NUMBER_LENGTH)));
+        } while (phoneNumbers.contains(phoneNumber));
+        return phoneNumber;
+    }
 
     private static final int MIN_AGE = 18;
     private static final int MAX_AGE = 99;
@@ -163,7 +170,6 @@ public class FakeDataGenerator {
         formattedSnils.append(snils.substring(9, 11));
         return formattedSnils.toString();
     }
-
 
 
 }
