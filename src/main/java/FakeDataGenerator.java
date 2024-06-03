@@ -12,13 +12,7 @@ public class FakeDataGenerator {
     // Путь к файлу CSV
     private static final String CSV_FILE_PATH = "data.csv";
 
-    // Размер пула для генерации данных
-    private static final int POOL_SIZE = 10000;
-
-    // Формат даты
-    private static final String DATE_FORMAT = "dd.MM.yyyy";
-
-    // Метод для записи в CSV
+      // Метод для записи в CSV
     public static void main(String[] args) {
         // Создание множества для хранения уникальных номеров телефонов
         Set<String> phoneNumbers = new HashSet<>();
@@ -36,13 +30,7 @@ public class FakeDataGenerator {
 
             for (int i = 0; i < numLines; i++) {
 
-
                 String fullName = Name();
-
-
-                // генерация рандомной даты рождения
-              //  Date birthdate = BDate();
-              //  String formattedBirthdate = new SimpleDateFormat("dd.MM.yyyy").format(birthdate);
 
                 // генерация рандомного номера телефона
                 String phoneNumber = Phone(phoneNumbers, random);
@@ -53,19 +41,13 @@ public class FakeDataGenerator {
                 // транслиттерация имени и фамилии для email
                 String newName = firstName.toLowerCase();
                 newName = transliterate(newName);
-                // String newLastName = lastName.toLowerCase();
-              //  newLastName = transliterate(newLastName);
 
-                //String email = Email(newName, newLastName);
-               // String snils = Snils(random);
 
                 data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(phoneNumbers, random), Email(newName), Snils(random)));
                 for (String dataItem : data) {
                     writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
                 }
-                // Запись в CSV-файл
-              //  String csvLine = String.format("%s;%s;%s;%s;%s\n", fullName, formattedBirthdate, Phone(phoneNumbers, random), Email(newName, newLastName), Snils(random));
-               // writer.write(csvLine);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -108,7 +90,7 @@ public class FakeDataGenerator {
     }
 
 
-    private static final String PHONE_NUMBER_PREFIX = "+7999";
+    private static final String PHONE_NUMBER_PREFIX = "7999";
     private static final int PHONE_NUMBER_LENGTH = 7;
 
     public static String Phone(Set<String> phoneNumbers, Random random) {
@@ -151,15 +133,16 @@ public class FakeDataGenerator {
 
     // метод для проверки контрольной суммы
     public static int calculateControlNumber(String snils) {
+        // Вычисляем контрольное число
         int sum = 0;
         for (int i = 0; i < 9; i++) {
             sum += Character.getNumericValue(snils.charAt(i)) * (9 - i);
         }
-
         int controlNumber = sum % 101;
-        if (controlNumber == 100 || controlNumber == 101) {
+        if (controlNumber == 100) {
             controlNumber = 0;
         }
+
 
         return controlNumber;
     }
@@ -168,11 +151,11 @@ public class FakeDataGenerator {
     public static String formatSnils(String snils) {
         StringBuilder formattedSnils = new StringBuilder();
         formattedSnils.append(snils.substring(0, 3));
-        formattedSnils.append("-");
+        formattedSnils.append("");
         formattedSnils.append(snils.substring(3, 6));
-        formattedSnils.append("-");
+        formattedSnils.append("");
         formattedSnils.append(snils.substring(6, 9));
-        formattedSnils.append(" ");
+        formattedSnils.append("");
         formattedSnils.append(snils.substring(9, 11));
         return formattedSnils.toString();
     }
