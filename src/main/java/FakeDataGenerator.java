@@ -108,7 +108,7 @@ public class FakeDataGenerator {
     }
 
 
-    private static final String PHONE_NUMBER_PREFIX = "8999";
+    private static final String PHONE_NUMBER_PREFIX = "+7999";
     private static final int PHONE_NUMBER_LENGTH = 7;
 
     public static String Phone(Set<String> phoneNumbers, Random random) {
@@ -157,7 +157,7 @@ public class FakeDataGenerator {
         }
 
         int controlNumber = sum % 101;
-        if (controlNumber == 100) {
+        if (controlNumber == 100 || controlNumber == 101) {
             controlNumber = 0;
         }
 
@@ -172,7 +172,7 @@ public class FakeDataGenerator {
         formattedSnils.append(snils.substring(3, 6));
         formattedSnils.append("-");
         formattedSnils.append(snils.substring(6, 9));
-        formattedSnils.append("-");
+        formattedSnils.append(" ");
         formattedSnils.append(snils.substring(9, 11));
         return formattedSnils.toString();
     }
