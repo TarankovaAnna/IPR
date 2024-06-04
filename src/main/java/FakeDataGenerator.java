@@ -42,7 +42,7 @@ public class FakeDataGenerator {
                 newName = transliterate(newName);
 
 
-                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(), Email(newName), Snils(random)));
+                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(), Email(), Snils()));
 
             } for (String dataItem : data) {
                 writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
@@ -116,12 +116,20 @@ public class FakeDataGenerator {
 
     private static final String EMAIL_DOMAIN = "mail.ru";
 
-    public static String Email(String resultName) {
+    public static String Email() {
+        String resultName = generateRandomName();  // Генерация случайного имени для почты
         String email = resultName.toLowerCase()  + "@" + EMAIL_DOMAIN;
         return email;
     }
 
-    public static String Snils(Random random) {
+    // Метод для генерации случайного имени
+    private static String generateRandomName() {
+        // Реализация логики для генерации случайного имени
+        return "user" + (new Random().nextInt(1000)) + "example";  // Пример: генерация случайного имени
+    }
+
+    public static String Snils() {
+        Random random = new Random();
         StringBuilder snils = new StringBuilder();
         for (int i = 0; i < 9; i++) {
             snils.append(random.nextInt(10));
