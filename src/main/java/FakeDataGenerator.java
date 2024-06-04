@@ -33,21 +33,16 @@ public class FakeDataGenerator {
                 String fullName = Name();
 
                 // генерация рандомного номера телефона
-                String phoneNumber = Phone(phoneNumbers, random);
+                String phoneNumber = Phone();
                 phoneNumbers.add(phoneNumber);
 
                 String firstName = fullName.split(" ")[0];
-                String lastName = fullName.split(" ")[1];
                 // транслиттерация имени и фамилии для email
                 String newName = firstName.toLowerCase();
                 newName = transliterate(newName);
 
 
-                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(phoneNumbers, random), Email(newName), Snils(random)));
-               // writer.write(data.toString());
-//                  for (String dataItem : data) {
-//                    writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
-//                }
+                data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(), Email(newName), Snils(random)));
 
             } for (String dataItem : data) {
                 writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
@@ -97,7 +92,10 @@ public class FakeDataGenerator {
     private static final String PHONE_NUMBER_PREFIX = "8999";
     private static final int PHONE_NUMBER_LENGTH = 7;
 
-    public static String Phone(Set<String> phoneNumbers, Random random) {
+    public static String Phone() {
+        Set<String> phoneNumbers = new HashSet<>();  // Создание множества для хранения уникальных номеров телефонов
+        Random random = new Random();  // Создание экземпляра Random
+
         String phoneNumber;
         do {
             phoneNumber = PHONE_NUMBER_PREFIX + String.format("%0" + PHONE_NUMBER_LENGTH + "d", random.nextInt((int) Math.pow(10, PHONE_NUMBER_LENGTH)));
@@ -155,11 +153,11 @@ public class FakeDataGenerator {
     public static String formatSnils(String snils) {
         StringBuilder formattedSnils = new StringBuilder();
         formattedSnils.append(snils.substring(0, 3));
-        formattedSnils.append("");
+        formattedSnils.append("-");
         formattedSnils.append(snils.substring(3, 6));
-        formattedSnils.append("");
+        formattedSnils.append("-");
         formattedSnils.append(snils.substring(6, 9));
-        formattedSnils.append("");
+        formattedSnils.append(" ");
         formattedSnils.append(snils.substring(9, 11));
         return formattedSnils.toString();
     }
