@@ -4,22 +4,25 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-import static org.example.Transliteration.transliterate;
-
-
 public class FakeDataGenerator {
 
     // Путь к файлу CSV
     private static final String CSV_FILE_PATH = "data.csv";
+    private static final String PHONE_NUMBER_PREFIX = "8999";
+    private static final int PHONE_NUMBER_LENGTH = 7;
+    private static final int MIN_AGE = 18;
+    private static final int MAX_AGE = 99;
+    private static final String EMAIL_DOMAIN = "mail.ru";
 
-      // Метод для записи в CSV
+    // Метод для записи в CSV
     public static void main(String[] args) {
         // Создание множества для хранения уникальных номеров телефонов
         Set<String> phoneNumbers = new HashSet<>();
-        List<String> data = new ArrayList<>();  // Объявление списка для хранения данных
-        // Создание экземпляра генератора случайных чисел
-        Random random = new Random();
-        Scanner scanner = new Scanner(System.in);  // Создание экземпляра Scanner для ввода данных
+        // Объявление списка для хранения данных
+        List<String> data = new ArrayList<>();
+
+        // Создание экземпляра Scanner для ввода данных
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Введите количество строк: ");  // Приглашение для ввода числа строк
         int numLines = scanner.nextInt();  // Считывание введенного числа строк
         scanner.nextLine();  // Очистка буфера после считывания числа
@@ -32,20 +35,12 @@ public class FakeDataGenerator {
 
                 String fullName = Name();
 
-                // генерация рандомного номера телефона
-                String phoneNumber = Phone();
-                phoneNumbers.add(phoneNumber);
-
-                String firstName = fullName.split(" ")[0];
-                // транслиттерация имени и фамилии для email
-                String newName = firstName.toLowerCase();
-                newName = transliterate(newName);
-
-
                 data.add(String.format("%s;%s;%s;%s;%s", fullName, BDate(), Phone(), Email(), Snils()));
 
-            } for (String dataItem : data) {
-                writer.write(dataItem + "\n");  // Запись каждого элемента списка в файл
+            }
+            for (String dataItem : data) {
+                // Запись каждого элемента списка в файл
+                writer.write(dataItem + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,6 +48,7 @@ public class FakeDataGenerator {
 
     }
 
+    // метод для генерации имени
     public static String Name() {
         Random random = new Random();
         String characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
@@ -89,9 +85,7 @@ public class FakeDataGenerator {
     }
 
 
-    private static final String PHONE_NUMBER_PREFIX = "8999";
-    private static final int PHONE_NUMBER_LENGTH = 7;
-
+    // метод для генерации номера телефона
     public static String Phone() {
         Set<String> phoneNumbers = new HashSet<>();  // Создание множества для хранения уникальных номеров телефонов
         Random random = new Random();  // Создание экземпляра Random
@@ -103,9 +97,8 @@ public class FakeDataGenerator {
         return phoneNumber;
     }
 
-    private static final int MIN_AGE = 18;
-    private static final int MAX_AGE = 99;
 
+    // метод для генерации даты рождения
     public static String BDate() {
         long minTimestamp = System.currentTimeMillis() - (MAX_AGE * 365L * 24 * 60 * 60 * 1000);
         long maxTimestamp = System.currentTimeMillis() - (MIN_AGE * 365L * 24 * 60 * 60 * 1000);
@@ -114,20 +107,21 @@ public class FakeDataGenerator {
         return formattedBirthdate;
     }
 
-    private static final String EMAIL_DOMAIN = "mail.ru";
 
+    // метод для генерации email
     public static String Email() {
         String resultName = generateRandomName();  // Генерация случайного имени для почты
-        String email = resultName.toLowerCase()  + "@" + EMAIL_DOMAIN;
+        String email = resultName.toLowerCase() + "@" + EMAIL_DOMAIN;
         return email;
     }
 
-    // Метод для генерации случайного имени
+    // Метод для генерации случайного названия email
     private static String generateRandomName() {
         // Реализация логики для генерации случайного имени
-        return "user" + (new Random().nextInt(1000)) + "example";  // Пример: генерация случайного имени
+        return "user" + (new Random().nextInt(1000)) + "example";
     }
 
+    // метод для генерации снилс
     public static String Snils() {
         Random random = new Random();
         StringBuilder snils = new StringBuilder();
