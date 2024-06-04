@@ -1,0 +1,12 @@
+version: "3"  
+services:  
+snils_mock:  
+  image: myorg/myapp:latest  
+  container_name: snils_mock  
+  ports:  
+    - 8082:8082  
+  deploy:  
+    resources:  
+      limits:  
+        cpus: "0.5"  
+        memory: 512M  

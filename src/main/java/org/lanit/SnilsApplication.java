@@ -8,7 +8,6 @@ public class SnilsApplication {
     public static void main(String[] args) {
         SpringApplication.run(SnilsApplication.class, args);
 
-
     }
 }
 
