@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Создание директорий') {
+            steps {
+                script {
+                    SCRIPTS_PATH = 'C:\\jenkins'
+                    PROJECT_DIR='C:\\'
+                   dir(PROJECT_DIR) {
+                    def date = new Date()
+                   // artifactDir = env.PROJECT_NAME + "_" + date.format("yyyyMMdd_HHmmss")
+                   // currentBuild.displayName = artifactDir
+                    DATETIME = date.format("yyyyMMdd_HHmmss")
+
+                    
+                    
+                    LOG_NAME = "${DATETIME}.log"
+                    UNIQUE_TEST_NAME = "${env.JMETER_SCRIPT}" + "_" + "${env.LAUNCHED_STATIONS}" + "_" + "${DATETIME}"
+                    ARTIFACT_DIR = "${PROJECT_DIR}${UNIQUE_TEST_NAME}"
+                }
+            }
+        }
+}
+        stage('Запуск теста') {
+            steps {
+                script {
+                    try {
+                    dir('C:/jenkins/tools/test_run') {
+                        bat "run_test.bat ${env.JMETER_SCRIPT} ${env.LAUNCHED_STATIONS} ${ARTIFACT_DIR} ${LOG_NAME} ${UNIQUE_TEST_NAME} ${DATETIME} ${PROJECT_DIR}"
+                    }
+                    } catch (error) {
+        echo 'Test has been Aborted'
+    }
+                }
+            }
+        }
+        
+        
+        stage('Принудительная остановка JMeter') {
+            steps {
+                script {
+                    dir('C:/jenkins/tools/test_run') {
+                        def result = bat returnStatus: true, script: "jmeter_stop.bat"
+                        if (result != 0) {
+                            echo "JMeter не был остановлен успешно"
+                        } else {
+                            echo "JMeter успешно остановлен"
+                        }
+                    }
+                }
+            }
+        }
+
+
+        stage('Архивация логов') {
+            steps {
+                script {
+                    dir('C:/jenkins/tools/test_run') {
+                        bat "archive_logs.bat ${ARTIFACT_DIR} ${SCRIPTS_PATH} ${env.JMETER_SCRIPT}"
+                    }
+                }
+            }
+        }
+    }
+}
+
