@@ -1,0 +1,17 @@
+/target/
+/.settings
+/.classpath
+/.idea
+/.project
+/project/project/
+/project/target/
+/report/
+*.log
+/results/
+.bsp
+.vscode/
+/.gradle
+.sbt
+.npm
+build
+node_modules
