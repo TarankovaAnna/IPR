@@ -4,7 +4,7 @@
 
 1. MESSAGE_TYPE_IDS - типы сообщений, по которым будет собираться статистика
 SPECIFIC_MESSAGE_TYPE_IDS - критически важные сообщения, статистика по которым будет включена в профиль, даже если их интенсивность ниже процента попадания в профиль
-![1](IPR/images/1.png)
+![1](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/1.png)
 
 
 2. DATE_FROM, DATE_TO, TIMESTAMP_FROM, TIMESTAMP_TO - период сбора статистики.
