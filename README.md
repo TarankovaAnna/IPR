@@ -11,15 +11,15 @@ SPECIFIC_MESSAGE_TYPE_IDS - критически важные сообщения
 Для этого открываем дашборд со статистикой по любому типу сообщения, например этот.
 Выбираем нужный период.
 Копируем timestamp и даты, подставляем в значения переменных.
-![2](images\2.png)  
-![3](images\3.png)
+![2](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/2.png)  
+![3](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/3.png)
 
 
 
 3. GRAFANA_SESSION - значение grafana_session из Cookie.
 Открываем devtools, обновляем страницу, копируем значение grafana_session из любого запроса.
-![4](images\4.png)
-![5](images\5.png)
+![4](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/4.png)
+![5](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/5.png)
 
 
 
@@ -31,20 +31,20 @@ FILE_PATH - путь к итоговому файлу с профилем.
 
 После того, как утилита отработает, мы получаем файл с расcчитаным профилем. 
 На первом листе собрана вся статистика по указанным типам сообщений за выбранный период
-![6]images\(6.png)
+![6]images\(![6.png](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/6.png))
 
 
 На листе "Среднее количество запросов" сформирована статистика со средним количество запросов по дням недели за
 выбранный период для определения дня с пиковой нагрузкой.
-![7](images\7.png)
+![7](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/7.png)
 
 На листе "Запросы в ..." собрана статистика за пиковый день недели.
-![8](images\8.png)
+![8](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/8.png)
 
 На листе "Распределение интенсивности по часам" сформирована сводная таблица со статистикой нагрузки по часам в 
 разбивке по дням. 
 На основании этой таблицы будут выявлены дни с нетипичной нагрузкой.
-![9](images\9.png)
+![9](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/9.png)
 
 На листе "Отфильтрованные данные" представлена статистика за пиковый день за исключением дней с нетипичной нагрузкой.
 Дни с нетипичной нагрузкой определяются на основании условия:
@@ -52,45 +52,45 @@ Math.abs(value - averageRequests) / averageRequests >= DEVIATION
 DEVIATION - переменная, которая задается в методе Main.
 Чем ближе коэффициент DEVIATION к единице - тем большее отклонение допускается между значением нагрузки за час в каждом дне и средним значением по всем дням.
 Если в дне есть хотя бы один час с нетипичной нагрузкой - этот день исключается из анализа.
-![10](images\10.png)
+![10](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/10.png)
 
 
 На листе "Среднее по часам" сформирована сводная таблица со средними значениями интенсивностей операций по часам.
 И на основании этой статистики определен пик-час.
-![11](images\11.png)
+![11](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/11.png)
 
 
 Если значения интенсивности в других часах будут попадать в отклонение 10% от пик-часа, они будут выделены желтым
 цветом и эти часы так же попадут в профиль.
 Например:
-![15](images\15.png)
+![15](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/15.png)
 
 На листе "Максимальные значения" представлена таблица с часами, которые будут покрыты профилем.
-![12](images\12.png)
+![12](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/12.png)
 
 На листе "Профиль" представлена статистика по всем типам сообщений (rph и rps), а так же показатель нарастающего итога.
 На основании этой таблицы будет сформирован итоговый профиль, в который войдут сообщения, интенсивность которых
 составляет 99% всего трафика.
 Точность профиля задается в переменной CUMULATIVE_PERCENTAGE в методе Main.
-![13](images\13.png)
+![13](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/13.png)
 
 На листе "Профиль Итоговый" представлен итоговый профиль с процентным соотношением интенсивности операций.
 В этот профиль так же включены операции, интенсивность которых не попадала в 99% трафика, но они являются критически важными
 и были указаны в массиве SPECIFIC_MESSAGE_TYPE_IDS в методе Main (111, 62, 52).
-![14](images\14.png)
+![14](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/14.png)
 
 FAQ
 1. ПРОБЛЕМА
 При формировании файла получаем сообщение, а лист "Отфильтрованные данные" и все последующие листы пустые.
-![16](images\16.png)
-![17](images\17.png)
+![16](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/16.png)
+![17](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/17.png)
 
 ПРИЧИНА.
 Задан слишком низкий коэффициент DEVIATION
-![18](images\18.png)
+![18](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/18.png)
 
 и в каждом дне есть как минимум один час, который соответствует нетипичной нагрузке.
-![19](images\19.png)
+![19](https://github.com/TarankovaAnna/IPR/blob/profile_creator/images/19.png)
 
 РЕШЕНИЕ
 Увеличить коэффициент DEVIATION и перезапустить утилиту
